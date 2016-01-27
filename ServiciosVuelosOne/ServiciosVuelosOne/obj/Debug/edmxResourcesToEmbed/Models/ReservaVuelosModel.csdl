@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReservaVuelosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Aerolinea">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vuelo" Relationship="Self.fk_Vuelo_Aerolinea" FromRole="Aerolinea" ToRole="Vuelo" />
+  </EntityType>
+  <EntityType Name="Ciudad">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vuelo" Relationship="Self.FK_Vuelo_destino" FromRole="Ciudad" ToRole="Vuelo" />
+    <NavigationProperty Name="Vuelo1" Relationship="Self.FK_Vuelo_origen" FromRole="Ciudad" ToRole="Vuelo" />
+  </EntityType>
+  <EntityType Name="Reserva">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Vuelo" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario1" Relationship="Self.FK_Reserva_Usuario" FromRole="Reserva" ToRole="Usuario" />
+    <NavigationProperty Name="Vuelo1" Relationship="Self.FK_Reserva_Vuelo" FromRole="Reserva" ToRole="Vuelo" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Reserva" Relationship="Self.FK_Reserva_Usuario" FromRole="Usuario" ToRole="Reserva" />
+  </EntityType>
+  <EntityType Name="Vuelo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AsientosDisponibles" Type="Int32" Nullable="false" />
+    <Property Name="HorarioSalida" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="HorarioLlegada" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Origen" Type="Int32" Nullable="false" />
+    <Property Name="Destino" Type="Int32" Nullable="false" />
+    <Property Name="Tarifa" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Aerolinea" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Aerolinea1" Relationship="Self.fk_Vuelo_Aerolinea" FromRole="Vuelo" ToRole="Aerolinea" />
+    <NavigationProperty Name="Ciudad" Relationship="Self.FK_Vuelo_destino" FromRole="Vuelo" ToRole="Ciudad" />
+    <NavigationProperty Name="Ciudad1" Relationship="Self.FK_Vuelo_origen" FromRole="Vuelo" ToRole="Ciudad" />
+    <NavigationProperty Name="Reserva" Relationship="Self.FK_Reserva_Vuelo" FromRole="Vuelo" ToRole="Reserva" />
+  </EntityType>
+  <Association Name="fk_Vuelo_Aerolinea">
+    <End Role="Aerolinea" Type="Self.Aerolinea" Multiplicity="1" />
+    <End Role="Vuelo" Type="Self.Vuelo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Aerolinea">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="Vuelo">
+        <PropertyRef Name="Aerolinea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vuelo_destino">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+    <End Role="Vuelo" Type="Self.Vuelo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="Vuelo">
+        <PropertyRef Name="Destino" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vuelo_origen">
+    <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+    <End Role="Vuelo" Type="Self.Vuelo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudad">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="Vuelo">
+        <PropertyRef Name="Origen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reserva_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reserva_Vuelo">
+    <End Role="Vuelo" Type="Self.Vuelo" Multiplicity="1" />
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vuelo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reserva">
+        <PropertyRef Name="Vuelo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReservaVuelosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Aerolinea" EntityType="Self.Aerolinea" />
+    <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
+    <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="Vuelo" EntityType="Self.Vuelo" />
+    <AssociationSet Name="fk_Vuelo_Aerolinea" Association="Self.fk_Vuelo_Aerolinea">
+      <End Role="Aerolinea" EntitySet="Aerolinea" />
+      <End Role="Vuelo" EntitySet="Vuelo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vuelo_destino" Association="Self.FK_Vuelo_destino">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Vuelo" EntitySet="Vuelo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vuelo_origen" Association="Self.FK_Vuelo_origen">
+      <End Role="Ciudad" EntitySet="Ciudad" />
+      <End Role="Vuelo" EntitySet="Vuelo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Usuario" Association="Self.FK_Reserva_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reserva_Vuelo" Association="Self.FK_Reserva_Vuelo">
+      <End Role="Vuelo" EntitySet="Vuelo" />
+      <End Role="Reserva" EntitySet="Reserva" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
