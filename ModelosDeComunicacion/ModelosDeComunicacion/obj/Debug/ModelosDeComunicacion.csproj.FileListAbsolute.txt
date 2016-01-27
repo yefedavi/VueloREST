@@ -1,0 +1,5 @@
+C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ModelosDeComunicacion\ModelosDeComunicacion\bin\Debug\ModelosDeComunicacion.dll
+C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ModelosDeComunicacion\ModelosDeComunicacion\bin\Debug\ModelosDeComunicacion.pdb
+C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ModelosDeComunicacion\ModelosDeComunicacion\obj\Debug\ModelosDeComunicacion.csprojResolveAssemblyReference.cache
+C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ModelosDeComunicacion\ModelosDeComunicacion\obj\Debug\ModelosDeComunicacion.dll
+C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ModelosDeComunicacion\ModelosDeComunicacion\obj\Debug\ModelosDeComunicacion.pdb
