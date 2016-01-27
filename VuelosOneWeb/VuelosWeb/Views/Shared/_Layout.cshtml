@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                @if (@Session["usuario"] != null)
+                {
+                    <li class="sidebar-brand">
+                        <a href="#">Bienvenido @Session["usuario"]</a>
+                    </li>
+                    <li>@Html.ActionLink("Consulta de vuelos", "../Vuelo/Index", new {id = "consultaVuelosLink"}) </li>
+                    <li>@Html.ActionLink("Reservaciòn de vuelos", "../", new { id = "reservaVuelosLink" }) </li>
+                    <li>@Html.ActionLink("Estado de vuelos", "../", new { id = "estadoVuelosLink" })) </li>
+                    <li>
+                        @Html.ActionLink("Salir", "../Usuario/Salir")
+                    </li>
+                }
+                else
+                {
+                    <li class="sidebar-brand">
+                        @Html.ActionLink("Iniciar sesion", "../Usuario/Login", new {id = "iniciarSesionLink"}))
+                    </li>
+                    <li>@Html.ActionLink("Registrarse", "../Usuario/RegistrarUsuario", new {id = "registroUserLink"})</li>
+                }
+
+
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>VUELOS ONE</h1>
+                        @RenderSection("Featured", required: false)
+                        <div class="row-fluid">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+</body>
+</html>

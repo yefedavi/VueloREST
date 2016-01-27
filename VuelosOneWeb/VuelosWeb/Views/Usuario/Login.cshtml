@@ -1,0 +1,33 @@
+﻿@model VuelosWeb.Models.Usuario
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/Login.js">
+</script>
+
+<script type="text/javascript">
+    var urlLoginUsuario = '@Url.Action("LoguearUsuario", "Usuario")';
+</script>
+
+@section Featured{
+    <div class="hero-init">
+        <h2>Login</h2>
+        <p>Ingresa para ver las funciones que hay en nuestra web</p>
+    </div>
+}
+
+
+<div class="container">
+
+        @Html.LabelFor(model => Model.Username, "Nombre de usuario")
+        @Html.TextBoxFor(model => Model.Username, new { type = "text", @class = "form-control", @id = "usuario" })
+
+
+        @Html.LabelFor(model => Model.Password, "Contraseña")
+        @Html.TextBoxFor(model => model.Password, new { type = "password", @class = "form-control", @id = "password" })
+
+    <button class="btn btn-sm btn-primary btn-block" id="btnLoguearApp" type="submit" onclick="LoguearUsuario();">Ingresar</button>
+
+</div>

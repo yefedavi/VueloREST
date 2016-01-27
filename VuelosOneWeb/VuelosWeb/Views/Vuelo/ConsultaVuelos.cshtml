@@ -1,0 +1,69 @@
+﻿@model VuelosOne.Models.Vuelo
+@{
+    ViewBag.Title = "ConsultaVuelos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="~/Scripts/ConsultarVuelo.js">
+</script>
+
+<script type="text/javascript">
+    var urlConsultarTipoHorario = '@Url.Action("ListarVuelosTipoHorario", "Vuelo")';
+    var urlConsultarTipoTarifa = '@Url.Action("ListarVuelosTipoTarifa", "Vuelo")';
+</script>
+
+<script type="text/javascript" src="~/Scripts/ConfirmarReserva.js">
+</script>
+
+<script type="text/javascript">
+    var urlIrConfirmarUsuario = '@Url.Action("ConfirmarReserva", "Reserva")';
+</script>
+
+@section Scripts{
+        @Scripts.Render("~/bundles/jquery")
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                   $("#vuelosDisponiblesHorarioDiv").css("display", "none");
+                   $("#divSinResultados").css("display", "none");
+            })
+
+        </script>
+    }
+
+@section Featured{
+    <div class="hero-init">
+        <h2>Consulta de vuelos</h2>
+        <p>verifica los estados de nuestros vuelos</p>
+    </div>
+}
+<form id="consultaForm">
+    <div class="panel panel-default">
+        <div class="panel-heading">Selecciona el tipo de busqueda</div>
+        <div class="panel-body">
+
+            <label><input type="radio" name="tipoconsulta" id="tipoHorario" value="horario" checked /> Por horario</label>
+            <label><input type="radio" name="tipoconsulta" id="tipoCosto" value="costo" /> Por costo</label>
+
+
+        </div>
+
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Seleccione el Origen y el destino</div>
+        <div class="panel-body">
+            <label>@Html.DropDownList("Ciudad Origen", ViewData["ciudades"] as SelectList, new { name = "ciudadorigen", id = "ciudadorigen" }) Origen</label>
+            <label>@Html.DropDownList("Ciudad Destino", ViewData["ciudades"] as SelectList, new { name = "ciudaddestino", id = "ciudaddestino" }) Destino</label>
+            <a href="#" class="btn btn-success" onclick="ConsultarVuelos();">Consultar</a>
+        </div>
+    </div>
+
+</form>
+
+<div class="panel panel-default" id="vuelosDisponiblesHorarioDiv">
+    <div class="panel-heading">Vuelos Disponibles</div>
+    <div class="panel-body" id="divTabla">
+
+    </div>
+</div>

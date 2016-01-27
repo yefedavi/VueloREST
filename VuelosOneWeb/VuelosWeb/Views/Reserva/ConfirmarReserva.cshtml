@@ -1,0 +1,52 @@
+﻿@model VuelosWeb.Models.Vuelo
+@{
+    ViewBag.Title = "ConfirmarReserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="~/Scripts/ConfirmarReserva.js">
+</script>
+
+<script type="text/javascript">
+    var urlConfirmarUsuario = '@Url.Action("RealizarReserva", "Reserva")';
+</script>
+
+@section Featured{
+    <div class="hero-init">
+        <h2>Confirmaciòn de reserva</h2>
+        <p>confirma tu reserva</p>
+    </div>
+}
+<p>
+    <label>Identificador del vuelo</label>
+    @Html.TextBoxFor(m => m.Id, new { @readonly="readonly" , Id="idVuelo" })
+</p>
+
+<p>
+    <label>Ciudad Origen</label>
+    @Html.TextBoxFor(m => m.Ciudad1.Nombre, new { @readonly = "readonly" })
+</p>
+
+<p>
+    <label>Ciudad Destino</label>
+    @Html.TextBoxFor(m => m.Ciudad.Nombre, new { @readonly = "readonly" })
+</p>
+
+<p>
+    <label>Horario Salida</label>
+    @Html.TextBoxFor(m => m.HorarioSalida, new { @readonly = "readonly" })
+</p>
+
+<p>
+    <label>Horario Llegada</label>
+    @Html.TextBoxFor(m => m.HorarioLlegada, new { @readonly = "readonly" })
+</p>
+
+<p>
+    <label>Tarifa</label>
+    @Html.TextBoxFor(m => m.Tarifa, new { @readonly = "readonly" })
+</p>
+
+<p>
+    <input type="submit" class="btn-success" id="btnConfirmar" onclick="ConfirmarReserva();" value="Confirmar Reserva" />
+    <input type="button" class="btn-warning" id="btnCancelar" onclick="location.href = '@Url.Action("Index", "Vuelo")'" value="Regresar" />
+</p>

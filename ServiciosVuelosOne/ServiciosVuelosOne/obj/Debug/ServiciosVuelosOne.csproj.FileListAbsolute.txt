@@ -1,4 +1,3 @@
-C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\obj\Debug\ServiciosVuelosOne.csprojResolveAssemblyReference.cache
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\bin\ApplicationInsights.config
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\bin\roslyn\csc.exe
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -93,5 +92,6 @@ C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOn
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\bin\System.Web.Http.Owin.xml
+C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\obj\Debug\ServiciosVuelosOne.csprojResolveAssemblyReference.cache
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\obj\Debug\ServiciosVuelosOne.dll
 C:\Users\Yeferson Davila\Documents\Visual Studio 2015\Projects\ServiciosVuelosOne\ServiciosVuelosOne\obj\Debug\ServiciosVuelosOne.pdb

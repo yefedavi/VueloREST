@@ -1,0 +1,46 @@
+﻿@model IEnumerable<VuelosOne.Models.Vuelo>
+
+    @if (ViewBag.HayRegistros == "conResultados")
+    {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Codigo del vuelo</th>
+                    <th>Estado del vuelo</th>
+                    <th>Asientos Disponibles</th>
+                    <th>Horario de salida</th>
+                    <th>Horario de Llegada</th>
+                    <th>Ciudad Origen</th>
+                    <th>Ciudad Destino</th>
+                    <th>Reservar Vuelo</th>
+                    <th>Tarifa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model)
+                {
+                    <tr class="info">
+                        <td>VUE- @item.Id</td>
+                        <td>@item.Estado</td>
+                        <td>@item.AsientosDisponibles</td>
+                        <td>@item.HorarioSalida.ToString("dd/MM/yyyy hh:mm")</td>
+                        <td>@item.HorarioLlegada.ToString("dd/MM/yyyy hh:mm")</td>
+                        <td>@item.Ciudad1.Nombre</td>
+                        <td>@item.Ciudad.Nombre</td>
+                        <td>@item.Tarifa.ToString("#,##0.00")</td>
+                        <td><a onclick="IniciarConfirmacion(@item.Id)" >Reserva #@item.Id</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning" id="divSinResultados">
+            <strong>No hay resultados!</strong> no se encontraron resultados que coincidan con los filtros de bùsqueda.
+        </div>
+    }
+
+<form id="frmReserva" action="/Reserva/ConfirmarReserva" method="post">
+    <input type="hidden" name="codigoVuelo" id="codigoVuelo" />
+</form>
